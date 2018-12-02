@@ -64,7 +64,7 @@ def func2():
     number = 0
     frequency_set = set()
     frequency_set.add(0)
-    with open("input_2") as file:
+    with open("input_1") as file:
         change_list = file.read().split("\n")
     while True:
         for index in change_list:
