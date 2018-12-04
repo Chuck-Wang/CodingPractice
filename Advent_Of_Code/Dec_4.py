@@ -14,6 +14,9 @@ def func1():
         month = int(list[0].split("-")[1])
         date = int(list[0].split("-")[2])
         time = int(list[1].split(":")[1].split("]")[0])
+        if not int(list[1].split(":")[0]) == 0:
+            date += 1
+            time = 0
         rest = list[2:]
         log_list.append([year, month, date, time, rest])
     log_list = sorted(log_list, key = lambda x : (x[1], x[2], x[3]))
@@ -38,7 +41,7 @@ def func1():
     print max
     print max_guard
     current_guard = -1
-    sleep = -1
+    sleep = -100
     for x in log_list:
         if len(x[4]) == 4:
             current_guard = int(x[4][1].split("#")[1])
@@ -47,10 +50,9 @@ def func1():
                 if x[4][0] == "falls":
                     sleep = x[3]
                 if x[4][0] == "wakes":
-                    if not sleep == -1:
-                        for i in range(sleep, x[3]):
-                            time_dict[i] += 1
-                    sleep = -1
+                    for i in range(sleep, x[3]):
+                        time_dict[i] += 1
+                    sleep = -100
     print time_dict
     max = 0
     max_time = 0
@@ -60,10 +62,6 @@ def func1():
             max_time = keys
     print max
     print max_time
-
-
-
-
 
 func1()
 
